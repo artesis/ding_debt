@@ -27,7 +27,7 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
   $row = array();
   $penalties_amount = 0;
   $compensation_amount = 0;
-  
+
   $block = new stdClass();
   $block->module = 'ding_debt';
   $block->delta  = 'debts';
@@ -42,7 +42,7 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
     );
 
     foreach ($debts as $debt) {
-      
+
       if ( !$debt->invoice_number ) {
         $penalties_amount += $debt->amount;
         $penalties_amount -= $debt->amount_paid;
@@ -51,9 +51,9 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
           array('data' => $debt->display_name, 'class' => 'feetitle'),
           array('data' => number_format(($debt->amount - $debt->amount_paid), 2, ',', ' '), 'class' => 'feeamount'),
         );
-        $rows_penalty[] = $row;      
-        
-      } 
+        $rows_penalty[] = $row;
+
+      }
       else {
         $compensation_amount += $debt->amount;
         $compensation_amount -= $debt->amount_paid;
@@ -62,7 +62,7 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
           array('data' => $debt->display_name, 'class' => 'feetitle'),
           array('data' => number_format(($debt->amount - $debt->amount_paid), 2, ',', ' ') . ' <span class="note">*</span>' , 'class' => 'feeamount'),
         );
-        $rows_compensation[] = $row;      
+        $rows_compensation[] = $row;
       }
     }
     // Add total for penalties.
@@ -87,17 +87,17 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
       );
       $rows_compensation[] = $row;
     }
-    
-    $table_penalties = theme('table', array(
+
+    $table_penalties = theme('table__alternative', array(
       'header' => $header,
       'rows' => $rows_penalty,
     ));
-    
-    $table_compensation = theme('table', array(
+
+    $table_compensation = theme('table__alternative', array(
       'header' => $header,
       'rows' => $rows_compensation,
     ));
-    
+
     // Criterion: only display "Pay" button on if there is penalty related with penalties.
     if ($penalties_amount > 0) {
       $build = ding_provider_get_form('ding_debt_debts_form', $debts);
