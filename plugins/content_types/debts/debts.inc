@@ -86,16 +86,16 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
         array('data' => '', 'class' => 'fee-invoice-note'),
       );
       $rows_compensation[] = $row;
+
+      $table_compensation = theme('table__alternative', array(
+        'header' => $header,
+        'rows' => $rows_compensation,
+      ));
     }
 
     $table_penalties = theme('table__alternative', array(
       'header' => $header,
       'rows' => $rows_penalty,
-    ));
-
-    $table_compensation = theme('table__alternative', array(
-      'header' => $header,
-      'rows' => $rows_compensation,
     ));
 
     // Criterion: only display "Pay" button on if there is penalty related with penalties.
