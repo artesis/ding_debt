@@ -82,7 +82,7 @@ function ding_debt_debts_content_type_render($subtype, $conf, $panel_args, $cont
       // add note
       $row = array(
         array('data' => '', 'class' => 'fee-invoice-note'),
-        array('data' => t("* Invoiced fees can only be paid on your local library."), 'class' => 'fee-invoice-note'),
+        array('data' => t("* Regarding fines and charges: contact the library."), 'class' => 'fee-invoice-note'),
         array('data' => '', 'class' => 'fee-invoice-note'),
       );
       $rows_compensation[] = $row;
